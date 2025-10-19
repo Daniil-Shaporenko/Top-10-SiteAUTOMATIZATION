@@ -1,0 +1,272 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Топ-10 причин</title>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+    :root {
+        --primary-blue: #1E88E5;
+        --light-blue: #E3F2FD;
+        --dark-blue: #1565C0;
+        --accent-blue: #42A5F5;
+        --text-dark: #263238;
+        --text-light: #546E7A;
+        --card-shadow: 0 10px 30px rgba(30, 136, 229, 0.12);
+        --hover-shadow: 0 15px 35px rgba(30, 136, 229, 0.18);
+    }
+
+    * { 
+        margin: 0; 
+        padding: 0; 
+        box-sizing: border-box; 
+        font-family: 'Inter', sans-serif; 
+    }
+
+    body { 
+        background: linear-gradient(135deg, #f5fbff 0%, #f0f7ff 100%); 
+        color: var(--text-dark); 
+        line-height: 1.6; 
+        min-height: 100vh;
+    }
+
+    header {
+        text-align: center; 
+        padding: 8rem 2rem 6rem;
+        background: linear-gradient(135deg, var(--light-blue) 0%, #f5fbff 100%);
+        position: relative; 
+        overflow: hidden;
+        border-bottom-left-radius: 40px;
+        border-bottom-right-radius: 40px;
+    }
+    
+    header::before {
+        content: '';
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        height: 4px;
+        background: linear-gradient(90deg, var(--primary-blue), var(--accent-blue));
+    }
+    
+    header h1 { 
+        font-size: 3.2rem; 
+        font-weight: 700;
+        background: linear-gradient(135deg, var(--primary-blue), var(--dark-blue));
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+        margin-bottom: 1.5rem; 
+        letter-spacing: -0.5px;
+    }
+    
+    header p { 
+        color: var(--text-light); 
+        font-size: 1.3rem; 
+        max-width: 700px; 
+        margin: 0 auto; 
+        font-weight: 500;
+    }
+
+    .reasons {
+        max-width: 1100px; 
+        margin: -3rem auto 5rem; 
+        padding: 0 2rem;
+        display: grid; 
+        grid-template-columns: repeat(auto-fit, minmax(450px, 1fr)); 
+        gap: 2rem;
+    }
+
+    .card {
+        background: #fff; 
+        padding: 2.5rem; 
+        border-radius: 20px; 
+        box-shadow: var(--card-shadow);
+        opacity: 0; 
+        transform: translateY(40px); 
+        transition: all 0.5s ease;
+        border: 1px solid rgba(30, 136, 229, 0.08);
+        position: relative;
+        overflow: hidden;
+    }
+    
+    .card::before {
+        content: '';
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 4px;
+        height: 100%;
+        background: linear-gradient(to bottom, var(--primary-blue), var(--accent-blue));
+    }
+    
+    .card:hover {
+        transform: translateY(-8px);
+        box-shadow: var(--hover-shadow);
+    }
+    
+    .card.visible { 
+        opacity: 1; 
+        transform: translateY(0); 
+    }
+
+    .card-number {
+        width: 60px; 
+        height: 60px; 
+        background: linear-gradient(135deg, var(--primary-blue), var(--accent-blue)); 
+        color: white; 
+        border-radius: 50%; 
+        text-align: center; 
+        line-height: 60px; 
+        font-weight: 700; 
+        font-size: 1.4rem; 
+        margin-bottom: 1.5rem;
+        box-shadow: 0 5px 15px rgba(30, 136, 229, 0.3);
+    }
+
+    .card h3 { 
+        font-size: 1.5rem; 
+        margin-bottom: 1rem; 
+        color: var(--dark-blue); 
+        font-weight: 600;
+    }
+    
+    .card p { 
+        font-size: 1.05rem; 
+        color: var(--text-light); 
+        line-height: 1.7;
+    }
+
+    footer {
+        text-align: center;
+        padding: 3rem 2rem;
+        background: var(--light-blue);
+        color: var(--text-light);
+        border-top-left-radius: 40px;
+        border-top-right-radius: 40px;
+        margin-top: 4rem;
+    }
+
+    @media (max-width: 768px) {
+        .reasons { 
+            grid-template-columns: 1fr; 
+            padding: 0 1rem;
+        }
+        
+        header h1 { 
+            font-size: 2.5rem; 
+        }
+        
+        header p { 
+            font-size: 1.1rem; 
+        }
+        
+        .card {
+            padding: 2rem;
+        }
+    }
+
+    @media (max-width: 500px) {
+        .reasons { 
+            grid-template-columns: 1fr; 
+        }
+        
+        header {
+            padding: 6rem 1.5rem 4rem;
+        }
+        
+        .card {
+            padding: 1.8rem;
+        }
+    }
+</style>
+</head>
+<body>
+
+<header>
+    <h1>Топ-10 причин</h1>
+    <p>почему тебе срочно нужно автоматизировать свой бизнес</p>
+</header>
+
+<section class="reasons">
+    <div class="card">
+        <div class="card-number">1</div>
+        <h3>Экономия времени</h3>
+        <p>Раньше у тебя уходило по несколько часов, чтобы принять 20 заказов и дождаться оплаты. С ботом это происходит мгновенно — можешь даже спать, а заказов уже будет вдвое больше.</p>
+    </div>
+    
+    <div class="card">
+        <div class="card-number">2</div>
+        <h3>Меньше ошибок</h3>
+        <p>Бот показывает клиенту только то, что он может купить. Ошибок нет — все получают именно то, что заказали.</p>
+    </div>
+    
+    <div class="card">
+        <div class="card-number">3</div>
+        <h3>Больше продаж без твоего участия</h3>
+        <p>Бот работает 24/7. Клиенты могут покупать ночью, а ты спишь — деньги всё равно приходят.</p>
+    </div>
+    
+    <div class="card">
+        <div class="card-number">4</div>
+        <h3>Все заказы в одном месте</h3>
+        <p>Не нужно проверять разные мессенджеры и таблицы — бот собирает всё в одном месте и уведомляет тебя.</p>
+    </div>
+    
+    <div class="card">
+        <div class="card-number">5</div>
+        <h3>Автоматическая проверка оплаты</h3>
+        <p>Бот сам проверяет, оплатил ли клиент. Тебе не нужно вручную сверять счета.</p>
+    </div>
+    
+    <div class="card">
+        <div class="card-number">6</div>
+        <h3>Быстрые ответы клиентам</h3>
+        <p>Клиент пишет — бот отвечает сразу. Никто не ждёт, все довольны, возвращаются снова.</p>
+    </div>
+    
+    <div class="card">
+        <div class="card-number">7</div>
+        <h3>Удобные отчёты</h3>
+        <p>Бот может присылать тебе ежедневные отчёты — сколько заказов, какая прибыль, кто не оплатил.</p>
+    </div>
+    
+    <div class="card">
+        <div class="card-number">8</div>
+        <h3>Простой контроль</h3>
+        <p>Не нужно учить сотрудников и давать инструкции. Всё работает через бота автоматически.</p>
+    </div>
+    
+    <div class="card">
+        <div class="card-number">9</div>
+        <h3>Экономия на сотрудниках</h3>
+        <p>Меньше людей нужно для обработки заказов, меньше ошибок, меньше проблем — экономия сразу.</p>
+    </div>
+    
+    <div class="card">
+        <div class="card-number">10</div>
+        <h3>Работа без выходных</h3>
+        <p>Бот никогда не устаёт, не болеет и работает в любой день и час. Даже в праздники твой бизнес приносит деньги.</p>
+    </div>
+</section>
+
+<footer>
+    <p>Автоматизируй свой бизнес уже сегодня и начни экономить время и ресурсы!</p>
+</footer>
+
+<script>
+    const cards = document.querySelectorAll('.card');
+    const observer = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+            if(entry.isIntersecting){
+                entry.target.classList.add('visible');
+            }
+        });
+    }, {threshold: 0.1});
+    
+    cards.forEach(card => observer.observe(card));
+</script>
+
+</body>
+</html>
