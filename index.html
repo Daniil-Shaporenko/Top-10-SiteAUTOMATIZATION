@@ -14,7 +14,7 @@
         --text-dark: #263238;
         --text-light: #546E7A;
         --card-shadow: 0 10px 30px rgba(30, 136, 229, 0.12);
-        --hover-shadow: 0 0 30px rgba(30, 136, 229, 0.3);
+        --hover-shadow: 0 15px 35px rgba(30, 136, 229, 0.18);
     }
 
     * { 
@@ -25,31 +25,10 @@
     }
 
     body { 
-        background: linear-gradient(135deg, #f5fbff 0%, #f0f7ff 100%);
+        background: linear-gradient(135deg, #f5fbff 0%, #f0f7ff 100%); 
         color: var(--text-dark); 
         line-height: 1.6; 
         min-height: 100vh;
-        position: relative;
-        overflow-x: hidden;
-    }
-
-    /* Фоновые декоративные круги */
-    body::before, body::after {
-        content: '';
-        position: absolute;
-        border-radius: 50%;
-        opacity: 0.05;
-        z-index: 0;
-    }
-    body::before {
-        width: 400px; height: 400px;
-        background: var(--primary-blue);
-        top: -100px; left: -100px;
-    }
-    body::after {
-        width: 300px; height: 300px;
-        background: var(--accent-blue);
-        bottom: -80px; right: -50px;
     }
 
     header {
@@ -60,7 +39,6 @@
         overflow: hidden;
         border-bottom-left-radius: 40px;
         border-bottom-right-radius: 40px;
-        z-index: 1;
     }
     
     header::before {
@@ -98,8 +76,6 @@
         display: grid; 
         grid-template-columns: repeat(auto-fit, minmax(450px, 1fr)); 
         gap: 2rem;
-        position: relative;
-        z-index: 1;
     }
 
     .card {
@@ -109,10 +85,11 @@
         box-shadow: var(--card-shadow);
         opacity: 0; 
         transform: translateY(40px); 
-        transition: all 0.4s ease;
+        transition: all 0.5s ease;
         border: 1px solid rgba(30, 136, 229, 0.08);
         position: relative;
         overflow: hidden;
+        cursor: pointer;
     }
     
     .card::before {
@@ -123,12 +100,16 @@
         width: 4px;
         height: 100%;
         background: linear-gradient(to bottom, var(--primary-blue), var(--accent-blue));
+        transition: width 0.3s ease;
     }
     
     .card:hover {
         transform: translateY(-8px) scale(1.02);
         box-shadow: var(--hover-shadow);
-        border-color: var(--primary-blue);
+    }
+    
+    .card:hover::before {
+        width: 8px;
     }
     
     .card.visible { 
@@ -148,6 +129,11 @@
         font-size: 1.4rem; 
         margin-bottom: 1.5rem;
         box-shadow: 0 5px 15px rgba(30, 136, 229, 0.3);
+        transition: transform 0.3s ease;
+    }
+    
+    .card:hover .card-number {
+        transform: scale(1.1) rotate(5deg);
     }
 
     .card h3 { 
@@ -155,12 +141,68 @@
         margin-bottom: 1rem; 
         color: var(--dark-blue); 
         font-weight: 600;
+        transition: color 0.3s ease;
+    }
+    
+    .card:hover h3 {
+        color: var(--primary-blue);
     }
     
     .card p { 
         font-size: 1.05rem; 
         color: var(--text-light); 
         line-height: 1.7;
+    }
+
+    /* Стили для закладки */
+    .bookmark {
+        position: relative;
+        max-width: 600px;
+        margin: 4rem auto;
+        padding: 2.5rem 3rem;
+        background: linear-gradient(135deg, var(--primary-blue), var(--dark-blue));
+        color: white;
+        text-align: center;
+        border-radius: 12px;
+        box-shadow: 0 10px 30px rgba(30, 136, 229, 0.3);
+        transform: rotate(-1deg);
+        transition: transform 0.3s ease, box-shadow 0.3s ease;
+    }
+    
+    .bookmark:hover {
+        transform: rotate(0deg) scale(1.03);
+        box-shadow: 0 15px 40px rgba(30, 136, 229, 0.4);
+    }
+    
+    .bookmark::before {
+        content: '';
+        position: absolute;
+        top: -20px;
+        left: 50%;
+        transform: translateX(-50%);
+        width: 40px;
+        height: 40px;
+        background: var(--dark-blue);
+        clip-path: polygon(0 0, 100% 0, 50% 100%);
+    }
+    
+    .bookmark::after {
+        content: '';
+        position: absolute;
+        top: -15px;
+        left: 50%;
+        transform: translateX(-50%);
+        width: 30px;
+        height: 30px;
+        background: var(--primary-blue);
+        clip-path: polygon(0 0, 100% 0, 50% 100%);
+    }
+    
+    .bookmark p {
+        font-size: 1.4rem;
+        font-weight: 600;
+        margin: 0;
+        text-shadow: 0 2px 4px rgba(0,0,0,0.1);
     }
 
     footer {
@@ -171,8 +213,6 @@
         border-top-left-radius: 40px;
         border-top-right-radius: 40px;
         margin-top: 4rem;
-        position: relative;
-        z-index: 1;
     }
 
     @media (max-width: 768px) {
@@ -191,6 +231,15 @@
         
         .card {
             padding: 2rem;
+        }
+        
+        .bookmark {
+            margin: 3rem 1rem;
+            padding: 2rem 1.5rem;
+        }
+        
+        .bookmark p {
+            font-size: 1.2rem;
         }
     }
 
@@ -278,8 +327,13 @@
     </div>
 </section>
 
-<footer>
+<!-- Закладка -->
+<div class="bookmark">
     <p>Автоматизируй свой бизнес уже сегодня и начни экономить время и ресурсы!</p>
+</div>
+
+<footer>
+    <p>© 2023 Автоматизация бизнеса. Все права защищены.</p>
 </footer>
 
 <script>
